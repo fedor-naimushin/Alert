@@ -5,7 +5,7 @@ using NotificationGateway.DataStore.Repositories.Infrastructure;
 namespace NotificationGateway.DataStore.Repositories;
 
 public abstract class ReadonlyRepositoryBase<TAggregateRoot> : IReadonlyRepository<TAggregateRoot> 
-    where TAggregateRoot : class, IAggregateRoot, new()
+    where TAggregateRoot : class, IAggregateRoot
 {
     public virtual bool IsReadonly { get; set; }
     

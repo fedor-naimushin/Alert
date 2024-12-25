@@ -3,7 +3,7 @@ using NotificationGateway.Core;
 
 namespace NotificationGateway.DataStore.Repositories.Infrastructure;
 
-public interface IReadonlyRepository<TAggregateRoot> where TAggregateRoot : class, IAggregateRoot, new()
+public interface IReadonlyRepository<TAggregateRoot> where TAggregateRoot : class, IAggregateRoot
 {
     bool IsReadonly { get; set; }
     

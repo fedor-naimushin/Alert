@@ -5,7 +5,7 @@ using NotificationGateway.DataStore.Repositories.Infrastructure;
 namespace NotificationGateway.DataStore.Repositories;
 
 public abstract class RepositoryBase<TAggregateRoot>(IUnitOfWork unitOfWork) : ReadonlyRepositoryBase<TAggregateRoot>, IRepository<TAggregateRoot> 
-    where TAggregateRoot : class, IAggregateRoot, new()
+    where TAggregateRoot : class, IAggregateRoot
 {
     public IUnitOfWork UnitOfWork
     {

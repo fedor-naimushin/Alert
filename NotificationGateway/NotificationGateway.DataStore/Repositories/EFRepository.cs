@@ -6,7 +6,7 @@ using NotificationGateway.DataStore.Repositories.Infrastructure;
 namespace NotificationGateway.DataStore.Repositories;
 
 public abstract class EFRepository<TEntity, TDbContext>(TDbContext context) : RepositoryBase<TEntity>(context)
-    where TEntity : class, IAggregateRoot, new()
+    where TEntity : class, IAggregateRoot
     where TDbContext : DbContext, IUnitOfWork
 {
     protected virtual IQueryable<TEntity> Items => IsReadonly ? _items.AsNoTracking() : _items;
