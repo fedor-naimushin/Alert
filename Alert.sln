@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.DataStore", "NotificationGateway\NotificationGateway.DataStore\NotificationGateway.DataStore.csproj", "{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.Application", "NotificationGateway\NotificationGateway.Application\NotificationGateway.Application.csproj", "{AF7C3AF2-C224-4501-8428-798DACDDDB3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,7 @@ Global
 		{BF9C67B6-108D-4B25-B768-FA9AE1386797} = {7F67DBE3-7773-4308-A071-1420F54BEAF7}
 		{E03D99E8-F79B-4831-9E87-D4EB560DBAB2} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
 		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{14D86365-2AA8-40A8-85BF-D77C45BE0745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +52,9 @@ Global
 		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

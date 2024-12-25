@@ -2,7 +2,7 @@
 
 namespace NotificationGateway.DataStore.Repositories.Infrastructure;
 
-public interface IRepository<TAggregateRoot> : IReadonlyRepository<TAggregateRoot> where TAggregateRoot : class, IAggregateRoot, new()
+public interface IRepository<TAggregateRoot> : IReadonlyRepository<TAggregateRoot> where TAggregateRoot : class, IAggregateRoot
 {
     Task<TAggregateRoot> AddAsync(TAggregateRoot aggregateRoot, CancellationToken cancellationToken);
     Task AddRangeAsync(IReadOnlyList<TAggregateRoot> aggregateRoots, CancellationToken cancellationToken);
