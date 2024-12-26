@@ -1,14 +1,12 @@
-﻿using NotificationGateway.Core;
-using NotificationGateway.Core.Enums;
+﻿using NotificationGateway.Application.Models.Front;
+using NotificationGateway.Core;
 
 namespace NotificationGateway.Application.Models;
 
-public class NotificationInfo
+public class NotificationInfo : NotificationFront
 {
     public long Id { get; set; }
-    public string? Message { get; set; }
-    public NotificationType Type { get; set; }
-
+    
     public static NotificationInfo FromAggregate(Notification notification) => new ()
     {
         Id = notification.Id,

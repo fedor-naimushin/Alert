@@ -12,7 +12,10 @@ public static class ResultExtensions
         {
             ResultCode.Ok => new OkObjectResult(result.Value),
             ResultCode.Fail => new BadRequestObjectResult(result.ErrorMessage),
-            ResultCode.NotFound => new NotFoundObjectResult(result.ErrorMessage)
+            ResultCode.NotFound => new NotFoundObjectResult(result.ErrorMessage),
+            ResultCode.Forbidden => new ForbidResult(result.ErrorMessage!),
+            ResultCode.AlreadyExist => new ObjectResult(result.ErrorMessage){ StatusCode = 409 },
+            _ => new BadRequestObjectResult(result.ErrorMessage)
         };
     } 
 }
