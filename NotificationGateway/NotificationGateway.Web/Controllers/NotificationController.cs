@@ -2,24 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using NotificationGateway.Application.Commands;
 using NotificationGateway.Application.Models;
-using NotificationGateway.Application.Queries;
+using NotificationGateway.Application.Models.Front;
 using NotificationGateway.Web.Extensions;
 
 namespace NotificationGateway.Web.Controllers;
 
 public class NotificationController(IMediator mediator) : ControllerBase
 {
-    [HttpGet("getById/{id}")]
-    public async Task<ActionResult<NotificationInfo>> GetById(long id)
+    [HttpPost("addRequest")]
+    public async Task<ActionResult<NotificationInfo>> AddRequest([FromBody] NotificationFront notification)
     {
-        var result = await mediator.Send(new GetNotification.Query { Id = id });
-        return result.ToActionResult();
-    }
-
-    [HttpPost("add")]
-    public async Task<ActionResult<NotificationInfo>> Add([FromBody] NotificationInfo notification)
-    {
-        var result = await mediator.Send(new AddNotification.Command { NotificationInfo = notification });
+        var result = await mediator.Send(new AddNotificationRequest.Command { NotificationFront = notification });
         return result.ToActionResult();
     }
 }
