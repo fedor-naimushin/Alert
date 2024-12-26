@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NotificationGateway.Core.Notification;
+using NotificationGateway.Core;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 
 namespace NotificationGateway.DataStore;
 
-public class ServerDbContext : DbContext, IUnitOfWork
+public class ServerDbContext(DbContextOptions<ServerDbContext> contextOptions) : DbContext(contextOptions), IUnitOfWork
 {
-    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Notification> Notifications { get; set; } = default!;
 }

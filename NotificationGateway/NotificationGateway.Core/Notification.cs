@@ -1,4 +1,6 @@
-﻿namespace NotificationGateway.Core.Notification;
+﻿using NotificationGateway.Core.Enums;
+
+namespace NotificationGateway.Core;
 
 public class Notification : AlertObject<long>, IAggregateRoot
 {

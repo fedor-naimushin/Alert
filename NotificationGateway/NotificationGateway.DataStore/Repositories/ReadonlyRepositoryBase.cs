@@ -10,7 +10,7 @@ public abstract class ReadonlyRepositoryBase<TAggregateRoot> : IReadonlyReposito
     public virtual bool IsReadonly { get; set; }
     
     public abstract ValueTask<TAggregateRoot?> GetById(long id, CancellationToken cancellationToken);
-    public abstract ValueTask<TAggregateRoot?> GetById(object[] keyValues, CancellationToken cancellationToken);
+    public abstract ValueTask<TAggregateRoot?> GetByIds(object[] keyValues, CancellationToken cancellationToken);
     
     public abstract Task<IReadOnlyList<TAggregateRoot>> ListAsync(CancellationToken cancellationToken);
     public abstract Task<IReadOnlyList<TAggregateRoot>> ListAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellationToken);

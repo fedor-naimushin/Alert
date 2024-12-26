@@ -14,4 +14,9 @@
       <ProjectReference Include="..\NotificationGateway.DataStore\NotificationGateway.DataStore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
