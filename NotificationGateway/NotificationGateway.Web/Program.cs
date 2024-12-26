@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ServerDbContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.RegisterRepositories();
+builder.Services.ResisterServices();
 
 var app = builder.Build();
 

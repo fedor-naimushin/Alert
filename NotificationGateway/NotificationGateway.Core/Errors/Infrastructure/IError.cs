@@ -4,6 +4,6 @@ namespace NotificationGateway.Core.Errors.Infrastructure;
 
 public interface IError
 {
-    ResultStatus Type { get; }
+    ResultCode Type { get; }
     Dictionary<string, object> Data { get; }
 }
