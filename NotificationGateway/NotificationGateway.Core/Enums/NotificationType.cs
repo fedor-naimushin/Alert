@@ -1,4 +1,4 @@
-﻿namespace NotificationGateway.Core.Notification;
+﻿namespace NotificationGateway.Core.Enums;
 
 public enum NotificationType
 {

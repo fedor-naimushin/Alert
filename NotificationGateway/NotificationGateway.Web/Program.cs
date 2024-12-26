@@ -1,9 +1,25 @@
+using Microsoft.EntityFrameworkCore;
 using NotificationGateway.Application.Extensions;
+using NotificationGateway.DataStore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+{
+    builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assembly));
+}
+
+
+builder.Services.AddDbContext<ServerDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(ServerDbContext)));
+});
+
+
+builder.Services.AddControllers();
 builder.Services.RegisterRepositories();
 
 var app = builder.Build();

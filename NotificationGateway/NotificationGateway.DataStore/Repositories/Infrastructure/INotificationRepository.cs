@@ -1,4 +1,4 @@
-﻿using NotificationGateway.Core.Notification;
+﻿using NotificationGateway.Core;
 
 namespace NotificationGateway.DataStore.Repositories.Infrastructure;
 

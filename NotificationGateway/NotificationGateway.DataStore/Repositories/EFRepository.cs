@@ -32,7 +32,8 @@ public abstract class EFRepository<TEntity, TDbContext>(TDbContext context) : Re
     
     public override Task RemoveRangeAsync(IReadOnlyList<TEntity> aggregateRoots, CancellationToken cancellationToken)
     {
-        return Task.FromResult<>(_items.RemoveRange(aggregateRoots));
+        _items.RemoveRange(aggregateRoots);
+        return Task.CompletedTask;
     }
     
     public override ValueTask<TEntity?> GetById(long id, CancellationToken cancellationToken)
@@ -40,7 +41,7 @@ public abstract class EFRepository<TEntity, TDbContext>(TDbContext context) : Re
         return _items.FindAsync(new object?[] { id }, cancellationToken: cancellationToken);
     }
 
-    public override ValueTask<TEntity?> GetById(object[] keyValues, CancellationToken cancellationToken)
+    public override ValueTask<TEntity?> GetByIds(object[] keyValues, CancellationToken cancellationToken)
     {
         return _items.FindAsync(keyValues, cancellationToken);
     }
