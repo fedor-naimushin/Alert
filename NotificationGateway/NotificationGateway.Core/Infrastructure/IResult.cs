@@ -5,7 +5,7 @@ namespace NotificationGateway.Core.Infrastructure;
 public interface IResult
 {
     string? ErrorMessage { get; }
-    ResultCode Code { get; }
+    ResultCode Status { get; }
     bool IsSuccess { get; }
     bool IsFailure { get; }
 }

@@ -7,12 +7,13 @@ using NotificationGateway.Web.Extensions;
 
 namespace NotificationGateway.Web.Controllers;
 
+[Route("api/[controller]")]
 public class NotificationController(IMediator mediator) : ControllerBase
 {
     [HttpPost("addRequest")]
-    public async Task<ActionResult<NotificationInfo>> AddRequest([FromBody] NotificationFront notification)
+    public async Task<ActionResult<int>> AddRequest([FromBody] IReadOnlyList<NotificationFront> notification)
     {
-        var result = await mediator.Send(new AddNotificationRequest.Command { NotificationFront = notification });
+        var result = await mediator.Send(new AddNotificationRequests.Command { NotificationFronts = notification });
         return result.ToActionResult();
     }
 }

@@ -8,7 +8,7 @@ public static class ResultExtensions
 {
     public static ActionResult<TResult> ToActionResult<TResult>(this Result<TResult> result)
     {
-        return result.Code switch
+        return result.Status switch
         {
             ResultCode.Ok => new OkObjectResult(result.Value),
             ResultCode.Fail => new BadRequestObjectResult(result.ErrorMessage),

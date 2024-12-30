@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  gateway:
+    container_name: Gateway
+    ports:
+      - "5000:8080"
+    build:
+      context: .
+      dockerfile: NotificationGateway/NotificationGateway.Web/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    container_name: RabbitMQ
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"

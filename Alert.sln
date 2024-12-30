@@ -1,35 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationGateway", "NotificationGateway", "{35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.Web", "NotificationGateway\NotificationGateway.Web\NotificationGateway.Web.csproj", "{14D86365-2AA8-40A8-85BF-D77C45BE0745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationGateway.Web", "NotificationGateway\NotificationGateway.Web\NotificationGateway.Web.csproj", "{14D86365-2AA8-40A8-85BF-D77C45BE0745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailNotifier", "EmailNotifier", "{CB9F779F-6067-4E8E-A5E2-7FEC5E2321F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotifier.Web", "EmailNotifier\EmailNotifier.Web\EmailNotifier.Web.csproj", "{820B077A-15F6-47B6-A969-E542B02AB012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailNotifier.Web", "EmailNotifier\EmailNotifier.Web\EmailNotifier.Web.csproj", "{820B077A-15F6-47B6-A969-E542B02AB012}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageNotifier", "MessageNotifier", "{7F67DBE3-7773-4308-A071-1420F54BEAF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageNotifier.Web", "MessageNotifier\MessageNotifier.Web\MessageNotifier.Web.csproj", "{BF9C67B6-108D-4B25-B768-FA9AE1386797}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageNotifier.Web", "MessageNotifier\MessageNotifier.Web\MessageNotifier.Web.csproj", "{BF9C67B6-108D-4B25-B768-FA9AE1386797}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.Core", "NotificationGateway\NotificationGateway.Core\NotificationGateway.Core.csproj", "{E03D99E8-F79B-4831-9E87-D4EB560DBAB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationGateway.Core", "NotificationGateway\NotificationGateway.Core\NotificationGateway.Core.csproj", "{E03D99E8-F79B-4831-9E87-D4EB560DBAB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.DataStore", "NotificationGateway\NotificationGateway.DataStore\NotificationGateway.DataStore.csproj", "{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationGateway.DataStore", "NotificationGateway\NotificationGateway.DataStore\NotificationGateway.DataStore.csproj", "{918AE6E5-1ED0-4468-B708-6D7EB7A21B57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationGateway.Application", "NotificationGateway\NotificationGateway.Application\NotificationGateway.Application.csproj", "{AF7C3AF2-C224-4501-8428-798DACDDDB3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationGateway.Application", "NotificationGateway\NotificationGateway.Application\NotificationGateway.Application.csproj", "{AF7C3AF2-C224-4501-8428-798DACDDDB3D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9F777849-519C-4BD8-91F2-D2825EE87BC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{14D86365-2AA8-40A8-85BF-D77C45BE0745} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
-		{820B077A-15F6-47B6-A969-E542B02AB012} = {CB9F779F-6067-4E8E-A5E2-7FEC5E2321F4}
-		{BF9C67B6-108D-4B25-B768-FA9AE1386797} = {7F67DBE3-7773-4308-A071-1420F54BEAF7}
-		{E03D99E8-F79B-4831-9E87-D4EB560DBAB2} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
-		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
-		{AF7C3AF2-C224-4501-8428-798DACDDDB3D} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{14D86365-2AA8-40A8-85BF-D77C45BE0745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -56,5 +53,23 @@ Global
 		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF7C3AF2-C224-4501-8428-798DACDDDB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F777849-519C-4BD8-91F2-D2825EE87BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F777849-519C-4BD8-91F2-D2825EE87BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F777849-519C-4BD8-91F2-D2825EE87BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F777849-519C-4BD8-91F2-D2825EE87BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14D86365-2AA8-40A8-85BF-D77C45BE0745} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
+		{820B077A-15F6-47B6-A969-E542B02AB012} = {CB9F779F-6067-4E8E-A5E2-7FEC5E2321F4}
+		{BF9C67B6-108D-4B25-B768-FA9AE1386797} = {7F67DBE3-7773-4308-A071-1420F54BEAF7}
+		{E03D99E8-F79B-4831-9E87-D4EB560DBAB2} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
+		{918AE6E5-1ED0-4468-B708-6D7EB7A21B57} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
+		{AF7C3AF2-C224-4501-8428-798DACDDDB3D} = {35ED0AA9-8A3B-4D0F-8581-EFC534F7D8A8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDE2B7B3-7DFA-421A-A313-C9149FAC1FCE}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
-﻿using NotificationGateway.Application.Extensions;
-using NotificationGateway.Application.Models;
+﻿using NotificationGateway.Application.Models;
 using NotificationGateway.Core;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 
@@ -23,5 +22,12 @@ public class NotificationService(
         var result = await writeRepository.AddAsync(NotificationInfo.ToAggregate(notificationInfo), cancellationToken);
         await writeRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
         return NotificationInfo.FromAggregate(result);
+    }
+
+    public async Task<int> AddNotifications(IReadOnlyList<NotificationInfo> notificationInfos, CancellationToken cancellationToken)
+    {
+        var newNotifications = notificationInfos.Select(NotificationInfo.ToAggregate).ToList();
+        var result = await writeRepository.AddRangeAsync(newNotifications, cancellationToken);
+        return result;
     }
 }
