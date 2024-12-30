@@ -21,7 +21,7 @@ public abstract class RepositoryBase<TAggregateRoot>(IUnitOfWork unitOfWork) : R
     }
 
     public abstract Task<TAggregateRoot> AddAsync(TAggregateRoot aggregateRoot, CancellationToken cancellationToken);
-    public abstract Task AddRangeAsync(IReadOnlyList<TAggregateRoot> aggregateRoots, CancellationToken cancellationToken);
+    public abstract Task<int> AddRangeAsync(IReadOnlyList<TAggregateRoot> aggregateRoots, CancellationToken cancellationToken);
     
     public abstract Task RemoveRangeAsync(IReadOnlyList<TAggregateRoot> aggregateRoots, CancellationToken cancellationToken);
     public abstract Task RemoveAsync(TAggregateRoot aggregateRoot, CancellationToken cancellationToken);

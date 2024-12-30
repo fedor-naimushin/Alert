@@ -20,9 +20,10 @@ public abstract class EFRepository<TEntity, TDbContext>(TDbContext context) : Re
         return (await _items.AddAsync(aggregateRoot, cancellationToken)).Entity;
     }
 
-    public override Task AddRangeAsync(IReadOnlyList<TEntity> aggregateRoots, CancellationToken cancellationToken)
+    public override async Task<int> AddRangeAsync(IReadOnlyList<TEntity> aggregateRoots, CancellationToken cancellationToken)
     {
-        return _items.AddRangeAsync(aggregateRoots, cancellationToken);
+        await _items.AddRangeAsync(aggregateRoots, cancellationToken);
+        return aggregateRoots.Count;
     }
 
     public override Task RemoveAsync(TEntity aggregateRoot, CancellationToken cancellationToken)
