@@ -3,11 +3,4 @@ using NotificationGateway.DataStore.Repositories.Infrastructure;
 
 namespace NotificationGateway.DataStore.Repositories.Realizations;
 
-public class NotificationRepository : EFRepository<Notification, ServerDbContext>, INotificationRepository
-{
-    public NotificationRepository(ServerDbContext context) : base(context)
-    {
-        
-    }
-    
-}
+public class NotificationRepository(ServerDbContext context) : EFRepository<Notification, ServerDbContext>(context), INotificationRepository;

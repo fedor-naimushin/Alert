@@ -1,15 +1,25 @@
 version: '3.4'
 
+networks:
+  alert:
+    driver: bridge
+    
 services:
   gateway:
-    container_name: Gateway
-    ports:
-      - "5000:8080"
+    container_name: Alert.Gateway
     build:
       context: .
       dockerfile: NotificationGateway/NotificationGateway.Web/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      DB_CONNECTION_STRING: "Host=database;Port=5432;Database=Alert;User ID=postgres;Password=postgres"
+      RABBITMQ_CONNECTION_STRING: "amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - rabbitmq
+      - database
+    networks:
+      - alert
 
   rabbitmq:
     container_name: RabbitMQ
@@ -17,3 +27,23 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+    networks:
+      - alert
+
+  database:
+    container_name: PostgreSQL
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: "Alert"
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5435:5432"
+    volumes:
+      - 'C:/Backups/Alert:/var/lib/postgresql/data'
+    networks:
+      - alert
+  
+volumes:
+  postgres-data:

@@ -32,6 +32,9 @@ namespace NotificationGateway.DataStore.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("text");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 

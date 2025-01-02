@@ -1,4 +1,4 @@
-﻿using NotificationGateway.Application.Models;
+﻿using NotificationGateway.Application.Models.Front;
 using NotificationGateway.Core;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 
@@ -8,26 +8,13 @@ public class NotificationService(
     INotificationRepository writeRepository,
     IReadonlyRepository<Notification> readRepository) : INotificationService
 {
-    public async Task<NotificationInfo?> GetNotification(long id, CancellationToken cancellationToken)
+    public async Task<int> AddNotifications(IReadOnlyList<NotificationFront> notificationFronts, CancellationToken cancellationToken)
     {
-        var result = await readRepository.GetById(id, cancellationToken);
-        return result is not null
-            ? NotificationInfo.FromAggregate(result)
-            : null;
-    }
-
-    public async Task<NotificationInfo> AddNotification(NotificationInfo notificationInfo,
-        CancellationToken cancellationToken)
-    {
-        var result = await writeRepository.AddAsync(NotificationInfo.ToAggregate(notificationInfo), cancellationToken);
-        await writeRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
-        return NotificationInfo.FromAggregate(result);
-    }
-
-    public async Task<int> AddNotifications(IReadOnlyList<NotificationInfo> notificationInfos, CancellationToken cancellationToken)
-    {
-        var newNotifications = notificationInfos.Select(NotificationInfo.ToAggregate).ToList();
+        var newNotifications = notificationFronts
+            .Select(NotificationFront.ToAggregate)
+            .ToList();
         var result = await writeRepository.AddRangeAsync(newNotifications, cancellationToken);
+        await writeRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
         return result;
     }
 }

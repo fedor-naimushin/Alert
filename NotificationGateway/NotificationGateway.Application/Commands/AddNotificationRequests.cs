@@ -10,17 +10,14 @@ public static class AddNotificationRequests
 {
     public sealed class Command : ApiCommand<int>
     {
-        public IReadOnlyList<NotificationFront> NotificationFronts { get; set; }
+        public IReadOnlyList<NotificationFront> NotificationFronts { get; init; } = default!;
     }
     
     private sealed class Handler(INotificationService notificationService) : CommandHandler<Command, int>
     {
         public override async Task<Result<int>> Handle(Command request, CancellationToken cancellationToken)
         {
-            var newRequests = request.NotificationFronts
-                .Select(NotificationFront.ToInfo)
-                .ToList();
-            
+            var newRequests = request.NotificationFronts;
             var result = await notificationService.AddNotifications(newRequests, cancellationToken);
             return Result<int>.Ok(result);
         }
