@@ -6,5 +6,5 @@ namespace NotificationGateway.DataStore;
 
 public class ServerDbContext(DbContextOptions<ServerDbContext> contextOptions) : DbContext(contextOptions), IUnitOfWork
 {
-    public DbSet<Notification> Notifications { get; set; } = default!;
+    public DbSet<Notification> Notifications { get; set; }
 }

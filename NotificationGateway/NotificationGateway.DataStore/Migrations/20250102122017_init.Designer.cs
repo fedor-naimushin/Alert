@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NotificationGateway.DataStore.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20241226065401_Initial")]
-    partial class Initial
+    [Migration("20250102122017_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,9 @@ namespace NotificationGateway.DataStore.Migrations
 
                     b.Property<string>("Message")
                         .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");

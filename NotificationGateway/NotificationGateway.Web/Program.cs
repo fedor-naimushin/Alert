@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NotificationGateway.Application.Extensions;
+using NotificationGateway.Core.WellKnown;
 using NotificationGateway.DataStore;
 using RabbitMQ.Client;
 
@@ -16,12 +17,12 @@ foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 
 builder.Services.AddDbContext<ServerDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(ServerDbContext)));
+    options.UseNpgsql(WellKnown.DbConnectionString);
 });
 
-builder.Services.AddSingleton(sp => new ConnectionFactory() 
+builder.Services.AddSingleton(sp => new ConnectionFactory
 { 
-    Uri = new Uri(builder.Configuration.GetConnectionString("RabbitMQ")!)
+    Uri = new Uri(WellKnown.RabbitMqConnectionString!)
 });
 
 builder.Services.RegisterRepositories();
@@ -34,5 +35,11 @@ app.UseSwaggerUI();
 
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ServerDbContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();

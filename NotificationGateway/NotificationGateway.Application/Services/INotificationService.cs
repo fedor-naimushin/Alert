@@ -1,10 +1,8 @@
-﻿using NotificationGateway.Application.Models;
+﻿using NotificationGateway.Application.Models.Front;
 
 namespace NotificationGateway.Application.Services;
 
 public interface INotificationService
 {
-    Task<NotificationInfo?> GetNotification(long id, CancellationToken cancellationToken);
-    Task<NotificationInfo> AddNotification(NotificationInfo notificationInfo, CancellationToken cancellationToken);
-    Task<int> AddNotifications(IReadOnlyList<NotificationInfo> notificationInfos, CancellationToken cancellationToken);
+    Task<int> AddNotifications(IReadOnlyList<NotificationFront> notificationFronts, CancellationToken cancellationToken);
 }
