@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NotificationGateway.Core.Enums;
-using NotificationGateway.Core.Infrastructure;
+using Shared.Enums;
+using Shared.Infrastructure;
 
 namespace NotificationGateway.Web.Extensions;
 

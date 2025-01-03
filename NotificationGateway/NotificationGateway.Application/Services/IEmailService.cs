@@ -1,6 +1,6 @@
-﻿using NotificationGateway.Application.Models.Front;
-using NotificationGateway.Core;
-using NotificationGateway.Core.Infrastructure;
+﻿using NotificationGateway.Application.Models;
+using NotificationGateway.Core.Models;
+using Shared.Infrastructure;
 
 namespace NotificationGateway.Application.Services;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using NotificationGateway.Core.WellKnown;
+using Shared.WellKnown;
 
 namespace NotificationGateway.DataStore;
 

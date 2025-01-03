@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NotificationGateway.Application.Services;
+using NotificationGateway.Application.Services.Realizations;
 using NotificationGateway.Core;
-using NotificationGateway.Core.WellKnown;
+using NotificationGateway.Core.Models;
 using NotificationGateway.DataStore;
-using NotificationGateway.DataStore.Repositories.Extensions;
+using NotificationGateway.DataStore.Extensions;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 using NotificationGateway.DataStore.Repositories.Realizations;
+using Shared.WellKnown;
 
 namespace NotificationGateway.Application.Extensions;
 
