@@ -10,10 +10,17 @@ namespace NotificationGateway.Web.Controllers;
 [Route("api/[controller]")]
 public class NotificationController(IMediator mediator) : ControllerBase
 {
-    [HttpPost("addRequest")]
-    public async Task<ActionResult<Notification>> AddRequest([FromBody] NotificationFront notification)
+    [HttpPost("addMessage")]
+    public async Task<ActionResult<Message>> AddMessage([FromBody] MessageFront message)
     {
-        var result = await mediator.Send(new AddNotificationRequest.Command { NotificationFronts = notification });
+        var result = await mediator.Send(new AddMessageRequest.Command { MessageFront = message });
+        return result.ToActionResult();
+    }
+    
+    [HttpPost("addEmail")]
+    public async Task<ActionResult<Email>> AddEmail([FromBody] EmailFront message)
+    {
+        var result = await mediator.Send(new AddEmailRequest.Command { EmailFront = message });
         return result.ToActionResult();
     }
 }

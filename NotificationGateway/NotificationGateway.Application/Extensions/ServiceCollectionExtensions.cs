@@ -23,12 +23,14 @@ public static class ServiceCollectionExtensions
     
     public static void ResisterServices(this IServiceCollection services)
     {
-        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IMessageService, MessageService>();
+        services.AddScoped<IEmailService, EmailService>();
     }
     
     public static void RegisterRepositories(this IServiceCollection services)
     {
-        services.RegisterRepository<INotificationRepository, NotificationRepository>();
+        services.RegisterRepository<IMessageRepository, MessageRepository>();
+        services.RegisterRepository<IEmailRepository, EmailRepository>();
     }
 
     public static void RegisterDbContext(this IServiceCollection services)
@@ -47,16 +49,16 @@ public static class ServiceCollectionExtensions
             {
                 var rabbitMqConnectionString = WellKnown.RabbitMqConnectionString ??  "amqp://guest:guest@localhost:5672";
 
-                cfg.Host(new Uri(rabbitMqConnectionString!), h =>
+                cfg.Host(new Uri(rabbitMqConnectionString));
+                
+                cfg.Message<Message>(config =>
                 {
-                    h.Username("guest");
-                    h.Password("guest");
+                    config.SetEntityName(WellKnown.MessagesQueue);
                 });
                 
-                cfg.Message<Notification>(config =>
+                cfg.Message<Email>(config =>
                 {
-                    config.SetEntityName("NotificationRequests");
-                    
+                    config.SetEntityName(WellKnown.EmailsQueue);
                 });
             });
         });

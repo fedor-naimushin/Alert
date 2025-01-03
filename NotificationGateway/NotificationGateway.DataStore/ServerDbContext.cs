@@ -6,5 +6,6 @@ namespace NotificationGateway.DataStore;
 
 public class ServerDbContext(DbContextOptions<ServerDbContext> contextOptions) : DbContext(contextOptions), IUnitOfWork
 {
-    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Message> Messages { get; set; }
+    public DbSet<Email> Emails { get; set; }
 }
