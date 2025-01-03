@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NotificationGateway.Core;
+using NotificationGateway.Core.Models;
 
 namespace NotificationGateway.DataStore.Configurations;
 

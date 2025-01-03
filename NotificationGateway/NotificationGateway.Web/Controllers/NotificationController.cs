@@ -1,8 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NotificationGateway.Application.Commands;
-using NotificationGateway.Application.Models.Front;
+using NotificationGateway.Application.Models;
 using NotificationGateway.Core;
+using NotificationGateway.Core.Models;
 using NotificationGateway.Web.Extensions;
 
 namespace NotificationGateway.Web.Controllers;

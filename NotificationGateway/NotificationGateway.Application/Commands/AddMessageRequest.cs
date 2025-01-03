@@ -1,9 +1,9 @@
 ﻿using MassTransit;
-using NotificationGateway.Application.Models.Front;
+using NotificationGateway.Application.Models;
 using NotificationGateway.Application.Services;
-using NotificationGateway.Core;
-using NotificationGateway.Core.Infrastructure;
-using NotificationGateway.Core.Infrastructure.CQS;
+using NotificationGateway.Core.Models;
+using Shared.Infrastructure;
+using Shared.Infrastructure.CQS;
 
 namespace NotificationGateway.Application.Commands;
 
