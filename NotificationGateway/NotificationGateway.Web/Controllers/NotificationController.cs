@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NotificationGateway.Application.Commands;
-using NotificationGateway.Application.Models;
 using NotificationGateway.Application.Models.Front;
+using NotificationGateway.Core;
 using NotificationGateway.Web.Extensions;
 
 namespace NotificationGateway.Web.Controllers;
@@ -11,9 +11,9 @@ namespace NotificationGateway.Web.Controllers;
 public class NotificationController(IMediator mediator) : ControllerBase
 {
     [HttpPost("addRequest")]
-    public async Task<ActionResult<int>> AddRequest([FromBody] IReadOnlyList<NotificationFront> notification)
+    public async Task<ActionResult<Notification>> AddRequest([FromBody] NotificationFront notification)
     {
-        var result = await mediator.Send(new AddNotificationRequests.Command { NotificationFronts = notification });
+        var result = await mediator.Send(new AddNotificationRequest.Command { NotificationFronts = notification });
         return result.ToActionResult();
     }
 }

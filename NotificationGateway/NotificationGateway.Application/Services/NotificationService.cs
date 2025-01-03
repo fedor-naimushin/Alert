@@ -1,20 +1,24 @@
 ﻿using NotificationGateway.Application.Models.Front;
 using NotificationGateway.Core;
+using NotificationGateway.Core.Infrastructure;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 
 namespace NotificationGateway.Application.Services;
 
-public class NotificationService(
-    INotificationRepository writeRepository,
-    IReadonlyRepository<Notification> readRepository) : INotificationService
+public class NotificationService(INotificationRepository writeRepository) : INotificationService
 {
-    public async Task<int> AddNotifications(IReadOnlyList<NotificationFront> notificationFronts, CancellationToken cancellationToken)
+    public async Task<Result<Notification>> AddNotification(NotificationFront notificationFront, CancellationToken cancellationToken)
     {
-        var newNotifications = notificationFronts
-            .Select(NotificationFront.ToAggregate)
-            .ToList();
-        var result = await writeRepository.AddRangeAsync(newNotifications, cancellationToken);
+        var newNotification = NotificationFront.ToAggregate(notificationFront);
+        
+        if (newNotification.Message is null)
+        {
+            return Result.Fail<Notification>("Текст сообщения не может быть пустым!");
+        }
+        
+        var result = await writeRepository.AddAsync(newNotification, cancellationToken);
         await writeRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
-        return result;
+        
+        return Result.Ok(result);
     }
 }

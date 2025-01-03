@@ -1,5 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NotificationGateway.Application.Services;
+using NotificationGateway.Core;
+using NotificationGateway.Core.WellKnown;
+using NotificationGateway.DataStore;
 using NotificationGateway.DataStore.Repositories.Extensions;
 using NotificationGateway.DataStore.Repositories.Infrastructure;
 using NotificationGateway.DataStore.Repositories.Realizations;
@@ -8,6 +13,14 @@ namespace NotificationGateway.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    public static void RegisterCQS(this IServiceCollection services)
+    {
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assembly));
+        }
+    }
+    
     public static void ResisterServices(this IServiceCollection services)
     {
         services.AddScoped<INotificationService, NotificationService>();
@@ -16,5 +29,43 @@ public static class ServiceCollectionExtensions
     public static void RegisterRepositories(this IServiceCollection services)
     {
         services.RegisterRepository<INotificationRepository, NotificationRepository>();
+    }
+
+    public static void RegisterDbContext(this IServiceCollection services)
+    {
+        services.AddDbContext<ServerDbContext>(options =>
+        {
+            options.UseNpgsql(WellKnown.DbConnectionString ?? "Host=localhost;Port=5432;Database=Alert;User ID=postgres;Password=postgres;");
+        });
+    }
+
+    public static void ResisterRabbitMq(this IServiceCollection services)
+    {
+        services.AddMassTransit(x =>
+        {
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                var rabbitMqConnectionString = WellKnown.RabbitMqConnectionString ??  "amqp://guest:guest@localhost:5672";
+
+                cfg.Host(new Uri(rabbitMqConnectionString!), h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+                
+                cfg.Message<Notification>(config =>
+                {
+                    config.SetEntityName("NotificationRequests");
+                    
+                });
+            });
+        });
+    }
+
+    public static void RegisterMigrations(this IServiceProvider serviceProvider)
+    {
+        using var scope = serviceProvider.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ServerDbContext>();
+        dbContext.Database.Migrate();
     }
 }
