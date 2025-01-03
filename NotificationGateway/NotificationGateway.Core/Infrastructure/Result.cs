@@ -4,13 +4,23 @@ namespace NotificationGateway.Core.Infrastructure;
 
 public class Result : IResult
 {
-    public bool IsSuccess { get; protected init; }
+    protected Result()
+    {
+    }
+    
+    public bool IsSuccess { get; private init; }
     public bool IsFailure => !IsSuccess;
     
-    public string? ErrorMessage { get; protected init; }
-    public ResultCode Status { get; protected init; }
+    public string? ErrorMessage { get; private init; }
+    public ResultCode Status { get; private init; }
     
     public static Result Ok() => new()
+    {
+        IsSuccess = true,
+        Status = ResultCode.Ok
+    };
+
+    public static Result<T> Ok<T>(T value) => new(value)
     {
         IsSuccess = true,
         Status = ResultCode.Ok
@@ -22,42 +32,46 @@ public class Result : IResult
         Status = ResultCode.Fail
     };
     
-    public static Result NotFound() => new()
+    public static Result<string> Fail(string message) => new(message)
     {
         IsSuccess = false,
-        Status = ResultCode.NotFound
+        Status = ResultCode.Fail,
+        ErrorMessage = message
     };
-}
-
-public class Result<TValue> : Result, IResult<TValue>
-{
-    public TValue Value { get; } = default!;
-
-    private Result(TValue value)
-    {
-        Value = value;
-    }
-
-    private Result()
-    {
-    }
-
-    public static Result<TValue> Ok(TValue value) => new(value)
-    {
-        IsSuccess = true,
-        Status = ResultCode.Ok
-    };
-
-    public static Result<TValue> Fail(TValue value) => new(value)
+    
+    public static Result<T> Fail<T>(string message) => new()
     {
         IsSuccess = false,
-        Status = ResultCode.Fail
+        Status = ResultCode.Fail,
+        ErrorMessage = message
+        
     };
-
-    public static Result<TValue> NotFound(string message) => new()
+    
+    public static Result<string> NotFound(string message) => new(message)
     {
         IsSuccess = false,
         Status = ResultCode.NotFound,
         ErrorMessage = message
     };
+    
+    public static Result<T> ToFailure<T>(Result<T> result) => new(result.Value)
+    {
+        IsSuccess = false,
+        ErrorMessage = result.ErrorMessage,
+        Status = result.Status
+    };
+}
+
+public class Result<TValue> : Result, IResult<TValue>
+{
+    public TValue Value { get; }
+
+    internal Result(TValue value)
+    {
+        Value = value;
+    }
+
+    internal Result()
+    {
+    }
 }
