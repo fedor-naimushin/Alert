@@ -4,7 +4,7 @@ using NotificationGateway.Core.Infrastructure;
 
 namespace NotificationGateway.Application.Services;
 
-public interface INotificationService
+public interface IEmailService
 {
-    Task<Result<Notification>> AddNotification(NotificationFront notificationFront, CancellationToken cancellationToken);
+    Task<Result<Email>> AddEmail(EmailFront emailFront, CancellationToken cancellationToken);
 }

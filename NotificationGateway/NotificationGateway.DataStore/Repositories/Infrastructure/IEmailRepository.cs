@@ -2,6 +2,6 @@
 
 namespace NotificationGateway.DataStore.Repositories.Infrastructure;
 
-public interface INotificationRepository : IRepository<Notification>
+public interface IEmailRepository : IRepository<Email>
 {
 }
