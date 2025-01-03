@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NotificationGateway.Application.Services;
 using NotificationGateway.Application.Services.Realizations;
-using NotificationGateway.Core;
 using NotificationGateway.Core.Models;
 using NotificationGateway.DataStore;
 using NotificationGateway.DataStore.Extensions;
-using NotificationGateway.DataStore.Repositories.Infrastructure;
-using NotificationGateway.DataStore.Repositories.Realizations;
+using NotificationGateway.DataStore.Repositories;
 using Shared.WellKnown;
 
 namespace NotificationGateway.Application.Extensions;
@@ -43,7 +41,7 @@ public static class ServiceCollectionExtensions
         });
     }
 
-    public static void ResisterRabbitMq(this IServiceCollection services)
+    public static void RegisterRabbitMq(this IServiceCollection services)
     {
         services.AddMassTransit(x =>
         {

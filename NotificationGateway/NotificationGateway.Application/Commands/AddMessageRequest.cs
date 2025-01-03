@@ -4,6 +4,7 @@ using NotificationGateway.Application.Services;
 using NotificationGateway.Core.Models;
 using Shared.Infrastructure;
 using Shared.Infrastructure.CQS;
+using Shared.Models;
 
 namespace NotificationGateway.Application.Commands;
 
@@ -20,7 +21,7 @@ public static class AddMessageRequest
         {
             var result = await messageService.AddMessage(request.MessageFront, cancellationToken);
 
-            await bus.Publish<Message>(result, cancellationToken);
+            await bus.Publish<IMessage>(result.Value, cancellationToken);
             
             return result.IsSuccess
                 ? Result.Ok(result.Value)

@@ -1,8 +1,6 @@
-﻿using Shared.Models;
+﻿namespace Shared.Models;
 
-namespace NotificationGateway.Core.Models;
-
-public class Email : AlertObject<long>, IEmail
+public interface IEmail : IEntity<long>, IStatusObject, IAggregateRoot
 {
     public string From { get; set; }
     public string To { get; set; }
