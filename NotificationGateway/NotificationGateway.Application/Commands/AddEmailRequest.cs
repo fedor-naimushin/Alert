@@ -4,6 +4,7 @@ using NotificationGateway.Application.Services;
 using NotificationGateway.Core.Models;
 using Shared.Infrastructure;
 using Shared.Infrastructure.CQS;
+using Shared.Models;
 
 namespace NotificationGateway.Application.Commands;
 
@@ -20,7 +21,7 @@ public static class AddEmailRequest
         {
             var result = await emailService.AddEmail(request.EmailFront, cancellationToken);
 
-            await bus.Publish<Email>(result, cancellationToken);
+            await bus.Publish<IEmail>(result.Value, cancellationToken);
             
             return result.IsSuccess
                 ? Result.Ok(result.Value)

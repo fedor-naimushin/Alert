@@ -1,7 +1,8 @@
 ﻿using NotificationGateway.Application.Models;
 using NotificationGateway.Core.Models;
-using NotificationGateway.DataStore.Repositories.Infrastructure;
+using NotificationGateway.DataStore.Repositories;
 using Shared.Infrastructure;
+using Shared.Repositories;
 
 namespace NotificationGateway.Application.Services.Realizations;
 

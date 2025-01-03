@@ -8,7 +8,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterCQS();
 builder.Services.RegisterDbContext();
-builder.Services.ResisterRabbitMq();
+builder.Services.RegisterRabbitMq();
 builder.Services.RegisterRepositories();
 builder.Services.ResisterServices();
 

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotificationGateway.Core;
 using NotificationGateway.Core.Models;
-using NotificationGateway.DataStore.Repositories.Infrastructure;
 using Shared.Repositories.Infrastructure;
 
 namespace NotificationGateway.DataStore;
