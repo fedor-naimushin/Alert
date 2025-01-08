@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
 
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.Host(WellKnown.RabbitMqConnectionString ??  "amqp://guest:guest@localhost:5672");
+                cfg.Host(WellKnown.RabbitMqConnectionString);
 
                 cfg.ReceiveEndpoint(WellKnown.MessagesQueue, e =>
                 {

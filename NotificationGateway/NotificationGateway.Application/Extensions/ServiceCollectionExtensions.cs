@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NotificationGateway.Application.Services;
 using NotificationGateway.Application.Services.Realizations;
@@ -13,6 +14,11 @@ namespace NotificationGateway.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    public static void RegisterWellKnows(this IServiceCollection services, IConfiguration configuration)
+    {
+        WellKnown.Initialize(configuration);
+    }
+    
     public static void RegisterCQS(this IServiceCollection services)
     {
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -37,7 +43,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddDbContext<ServerDbContext>(options =>
         {
-            options.UseNpgsql(WellKnown.DbConnectionString ?? "Host=localhost;Port=5432;Database=Alert;User ID=postgres;Password=postgres;");
+            options.UseNpgsql(WellKnown.DbConnectionString);
         });
     }
 
@@ -47,7 +53,7 @@ public static class ServiceCollectionExtensions
         {
             x.UsingRabbitMq((context, cfg) =>
             {
-                var rabbitMqConnectionString = WellKnown.RabbitMqConnectionString ??  "amqp://guest:guest@localhost:5672";
+                var rabbitMqConnectionString = WellKnown.RabbitMqConnectionString;
 
                 cfg.Host(new Uri(rabbitMqConnectionString));
                 
