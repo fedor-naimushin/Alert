@@ -1,9 +1,12 @@
-﻿using MassTransit;
-using MessageNotifier.Application.Consumers;
+﻿
+using EmailNotifier.Application.Consumers;
+using EmailNotifier.Application.Models;
+using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.WellKnown;
 
-namespace MessageNotifier.Application.Extensions;
+namespace EmailNotifier.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -11,7 +14,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddMassTransit(x =>
         {
-            x.AddConsumer<MessageRequestConsumer>();
+            x.AddConsumer<EmailRequestConsumer>();
 
             x.UsingRabbitMq((context, cfg) =>
             {
@@ -19,7 +22,7 @@ public static class ServiceCollectionExtensions
 
                 cfg.ReceiveEndpoint(WellKnown.MessagesQueue, e =>
                 {
-                    e.ConfigureConsumer<MessageRequestConsumer>(context);
+                    e.ConfigureConsumer<EmailRequestConsumer>(context);
                 });
             });
         });

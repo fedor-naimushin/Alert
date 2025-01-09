@@ -21,7 +21,7 @@ namespace NotificationGateway.DataStore.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("NotificationGateway.Core.Email", b =>
+            modelBuilder.Entity("NotificationGateway.Core.Models.Email", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,10 +30,6 @@ namespace NotificationGateway.DataStore.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -53,7 +49,7 @@ namespace NotificationGateway.DataStore.Migrations
                     b.ToTable("Emails");
                 });
 
-            modelBuilder.Entity("NotificationGateway.Core.Message", b =>
+            modelBuilder.Entity("NotificationGateway.Core.Models.Message", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

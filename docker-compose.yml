@@ -12,12 +12,33 @@ services:
       dockerfile: NotificationGateway/NotificationGateway.Web/Dockerfile
     ports:
       - "5000:8080"
-    environment:
-      DB_CONNECTION_STRING: "Host=database;Port=5432;Database=Alert;User ID=postgres;Password=postgres"
-      RABBITMQ_CONNECTION_STRING: "amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - rabbitmq
       - database
+    networks:
+      - alert
+
+  email:
+    container_name: Alert.EmailNotifier
+    build:
+      context: .
+      dockerfile: EmailNotifier/EmailNotifier.Web/Dockerfile
+    ports:
+      - "5001:80"
+    depends_on:
+      - gateway
+    networks:
+      - alert
+  
+  message:
+    container_name: Alert.MessageNotifier
+    build:
+      context: .
+      dockerfile: MessageNotifier/MessageNotifier.Web/Dockerfile
+    ports:
+      - "5002:80"
+    depends_on:
+      - gateway
     networks:
       - alert
 

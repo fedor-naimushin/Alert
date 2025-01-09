@@ -6,6 +6,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.RegisterWellKnows(builder.Configuration);
 builder.Services.RegisterCQS();
 builder.Services.RegisterDbContext();
 builder.Services.RegisterRabbitMq();
@@ -19,7 +20,5 @@ app.UseSwaggerUI();
 
 app.UseAuthorization();
 app.MapControllers();
-
-app.Services.RegisterMigrations();
 
 app.Run();
