@@ -69,11 +69,4 @@ public static class ServiceCollectionExtensions
             });
         });
     }
-
-    public static void RegisterMigrations(this IServiceProvider serviceProvider)
-    {
-        using var scope = serviceProvider.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<ServerDbContext>();
-        dbContext.Database.Migrate();
-    }
 }

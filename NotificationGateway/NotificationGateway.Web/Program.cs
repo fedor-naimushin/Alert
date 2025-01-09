@@ -21,6 +21,4 @@ app.UseSwaggerUI();
 app.UseAuthorization();
 app.MapControllers();
 
-//app.Services.RegisterMigrations();
-
 app.Run();

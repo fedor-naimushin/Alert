@@ -29,6 +29,18 @@ services:
       - gateway
     networks:
       - alert
+  
+  message:
+    container_name: Alert.MessageNotifier
+    build:
+      context: .
+      dockerfile: MessageNotifier/MessageNotifier.Web/Dockerfile
+    ports:
+      - "5002:80"
+    depends_on:
+      - gateway
+    networks:
+      - alert
 
   rabbitmq:
     container_name: RabbitMQ
