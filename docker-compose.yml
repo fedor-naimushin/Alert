@@ -18,6 +18,18 @@ services:
     networks:
       - alert
 
+  email:
+    container_name: Alert.EmailNotifier
+    build:
+      context: .
+      dockerfile: EmailNotifier/EmailNotifier.Web/Dockerfile
+    ports:
+      - "5001:80"
+    depends_on:
+      - gateway
+    networks:
+      - alert
+
   rabbitmq:
     container_name: RabbitMQ
     image: rabbitmq:3-management

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NotificationGateway.DataStore.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20250108232221_Initial")]
+    [Migration("20250108234706_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -33,10 +33,6 @@ namespace NotificationGateway.DataStore.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("text");
 

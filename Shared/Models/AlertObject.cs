@@ -2,8 +2,8 @@ using NotificationGateway.Core.Enums;
 
 namespace Shared.Models;
 
-public abstract class AlertObject<TKey> : IEntity<TKey>, IStatusObject, IAggregateRoot
+public abstract class AlertObject : IAlertObject
 {
-    public TKey Id { get; set; }
+    public long Id { get; set; }
     public NotificationStatus Status { get; set; }
 }

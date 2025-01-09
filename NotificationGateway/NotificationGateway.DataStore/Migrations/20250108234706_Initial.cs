@@ -17,7 +17,6 @@ namespace NotificationGateway.DataStore.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    From = table.Column<string>(type: "text", nullable: false),
                     To = table.Column<string>(type: "text", nullable: false),
                     Subject = table.Column<string>(type: "text", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),

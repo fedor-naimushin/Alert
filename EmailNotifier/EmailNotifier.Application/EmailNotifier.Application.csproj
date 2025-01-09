@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MailKit" Version="4.9.0" />
+      <PackageReference Include="MassTransit" Version="8.3.5-develop.2166" />
+      <PackageReference Include="MassTransit.Abstractions" Version="8.3.5-develop.2166" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.5-develop.2166" />
+    </ItemGroup>
+
+</Project>

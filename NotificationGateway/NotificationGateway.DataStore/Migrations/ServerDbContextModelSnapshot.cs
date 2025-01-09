@@ -33,10 +33,6 @@ namespace NotificationGateway.DataStore.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("From")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
